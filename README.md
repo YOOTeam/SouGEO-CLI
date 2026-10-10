@@ -9,7 +9,22 @@
 ## 📖 这是什么
 
 **GEO（Generative Engine Optimization，生成引擎优化）** 是 SEO 的 AI 时代继任者：衡量品牌在 AI 大模型（豆包、DeepSeek、ChatGPT、Claude 等）生成回答中的**可见度、引用率、排名与口碑**。
+<div style="position: relative; width: 100%; height: 300px; overflow: hidden; border-radius: 10px;">
+  <img src="https://image.yoojober.com/upload-m/2026-10/6aca16c0b944f.png" style="position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 1; animation: fade 9s infinite; animation-delay: 0s;">
+  <img src="https://image.yoojober.com/upload-m/2026-10/6aca16d2605b2.png" style="position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: fade 9s infinite; animation-delay: 3s;">
+  <img src="https://image.yoojober.com/upload-m/2026-10/6aca18d8b263b.png" style="position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: fade 9s infinite; animation-delay: 6s;">
+  <img src="https://image.yoojober.com/upload-m/2026-10/6aca18e3555b0.png" style="position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: fade 9s infinite; animation-delay: 6s;">
+</div>
 
+<style>
+@keyframes fade {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  33% { opacity: 1; }
+  43% { opacity: 0; }
+  100% { opacity: 0; }
+}
+</style>
 当越来越多用户开始"有事问 AI"，品牌在 AI 回答里是否被提及、被推荐，直接决定生意流向。**SouGEO CLI**（`npm i -g @yooai/sougeo-cli`）是搜极星 GEO 平台的命令行客户端，本 Skill 让 AI Agent 通过自然语言对话驱动它，替用户完成全流程。
 
 ## 🎯 核心解决的问题
@@ -51,6 +66,9 @@
 
 ## 📦 安装
 
+> ### ⚠️ 完整安装分两步：先装 Skill，再装 CLI
+> Skill 本身只是给 Agent 看的「使用说明书」——**真正执行报告生成的是 SouGEO CLI**，只装 Skill 是跑不了报告的。流程：① 通过下方任一方式安装 Skill → ② **根据 Skill 的指引安装 CLI**（SKILL.md 内置了完整的 CLI 安装与校验步骤，Agent 首次运行时会自动检测并引导安装；也可参照下文提前手动装好）。
+
 **方式一：`skills` CLI 安装（推荐）**
 
 ```bash
@@ -65,28 +83,35 @@ npx -y skills list
 
 **方式二：让 AI Agent 自动安装（零操作）**
 
-直接对任意已接入 Skill 机制的 AI Agent（Trae、WorkBuddy、Claude Code、Cursor 等）说一句话，Agent 会自动拉取并安装到自己的技能目录：
+直接对任意已接入 Skill 机制的 AI Agent（Trae、WorkBuddy、Claude Code、Cursor 等）说一句话，Agent 会自动拉取并安装到自己的技能目录。仓库二选一：GitHub（海外）或 Gitee（国内，访问更快）：
 
 ```
-帮我安装搜极星 SouGEO 的技能。技能文件在仓库 https://github.com/YOOTeam/SouGEO-CLI
-下的 skills/sougeo-brand-report/ 目录（含 SKILL.md），
-请下载该目录并放入你的技能目录，然后验证 sougeo CLI 是否可用，不可用就用 npm 帮我装好。
+帮我安装搜极星 SouGEO 的技能。技能文件在仓库下的 skills/sougeo-brand-report/ 目录（含 SKILL.md）：
+- GitHub：https://github.com/YOOTeam/SouGEO-CLI
+- Gitee（国内更快）：https://gitee.com/AiDoDesign/sougeo_cli
+请从其中任一仓库下载该目录并放入你的技能目录，
+然后验证 sougeo CLI 是否可用，不可用就用 npm 帮我装好（npm i -g @yooai/sougeo-cli）。
 ```
 
 适合不想碰命令行的用户——装完直接说"帮我做个 GEO 报告"就能用。
 
 **方式三：手动安装**
 
-从仓库下载 [`skills/sougeo-brand-report/`](https://github.com/YOOTeam/SouGEO-CLI/skills/sougeo-brand-report) 目录，复制到你的 Agent 技能目录即可（如 `~/.qwenworkcn/skills/`、`~/.workbuddy/skills/`、`~/.workbuddy/skills/``~/.claude/skills/` 等）。
+从仓库下载 [`skills/sougeo-brand-report/`](https://github.com/YOOTeam/SouGEO-CLI/skills/sougeo-brand-report) 目录（Gitee 仓库同样路径），复制到你的 Agent 技能目录即可（如 `~/.qwenworkcn/skills/`、`~/.workbuddy/skills/`、`~/.claude/skills/` 等）。
 
 > 📁 仓库结构：技能本体位于仓库的 **`skills/`** 子目录（`skills/sougeo-brand-report/SKILL.md`），而非仓库根目录；手动安装或让 Agent 下载时请认准该路径。
 
-**前置依赖：SouGEO CLI**（Skill 首次运行时会自动检测并引导安装）：
+### Skill 安装完成后：安装 SouGEO CLI（必做，Skill 会引导）
+
+Skill 装好后还**不能直接出报告**——必须安装它所驱动的 SouGEO CLI。Skill 内部已内置完整的 CLI 安装、校验与故障排查指引：**你只需对 Agent 说"帮我做个 GEO 报告"，Agent 会自动检测 CLI，未安装时按 Skill 指引用 npm 装好**。也可以提前手动安装：
 
 ```bash
 npm i -g @yooai/sougeo-cli      # 要求 Node >= 16，安装后命令名为 sougeo
 sougeo version show             # 能打印版本即安装成功
 ```
+
+> 💡 国内网络提示：若 npm 默认镜像源（淘宝源 npmmirror）报 `404 not in this registry`（新包同步有延迟），改用官方源安装：
+> `npm i -g @yooai/sougeo-cli --registry=https://registry.npmjs.org`
 
 ## 🚀 快速开始
 
@@ -131,6 +156,20 @@ sougeo report read <report_id> --type link               # 取在线报告链接
 | 行业报告 | `31` | 免费版 | ❌ 免费，无需校验 |
 | 行业报告 | `32` | 专业版 | ✅ 需权益 |
 
+<div style="position: relative; width: 100%; height: 2500px; overflow: hidden; border-radius: 10px;">
+  <img src="https://image.yoojober.com/upload-m/2026-10/6aca19b233e90.jpg" style="position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 1; animation: fade 9s infinite; animation-delay: 0s;">
+  <img src="https://image.yoojober.com/upload-m/2026-10/6aca1b432cf5c.png" style="position: absolute; width: 100%; height: 250%; object-fit: cover; opacity: 0; animation: fade 9s infinite; animation-delay: 3s;">
+</div>
+
+<style>
+@keyframes fade {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  33% { opacity: 1; }
+  43% { opacity: 0; }
+  100% { opacity: 0; }
+}
+</style>
 ## 💡 使用建议
 
 - 对 Agent 说"帮我做个 GEO 报告 / 测测 XX 品牌 / 行业分析"即可触发，**不要自己拼参数**——Skill 内置引导式收集流程。
