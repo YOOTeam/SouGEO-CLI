@@ -1,12 +1,29 @@
 ---
 name: sougeo-brand-report
-description: "搜极星 SouGEO CLI — 面向 Agent 的商业品牌 GEO 洞察工具。**需先安装 CLI（npm i -g @yooai/sougeo-cli，命令名 sougeo）**。支持 Token/设备码登录（auth status 可输出 JSON 登录态）、引导式生成品牌/行业报告（自动识别报告需求并逐步收集参数：企业/个人品牌判定、品牌名、**基于品牌名推断生成的「产品类型 / 职业类型」候选（禁止通用候选池）**、行业名识别、**必填的关注问题（默认生成一批适 GEO 场景的用户视角问题、由用户**点选**；**品牌 ≤3 条 / 行业 ≤6 条**；禁含品牌名 + 含决策引导词 + 植入卖点关键词 + 四类标签）**、AI 平台、报告类型），创建后**轮询生成状态直至完成、再取出报告在线链接**并给出基础小结（create → report status --watch → report read --type link 闭环，默认不拉完整 JSON）；分页查询报告列表（brand/industry/shield）、报告分享（**分享后拼装 `https://sougeo.com/ReportResults?share_code=<code>` 分享链接供二次分享；⚠️ 打开后仍需登录 SouGEO 账号才能查看，非免登录公开页；分享后可在官网查看有哪些人查看过该报告及查看记录**）、可购买套餐查询（rights sku list）与下单购买、订单校验。跨平台（Windows/Linux/macOS）。触发词：安装sougeo、sougeo-cli、@yooai/sougeo-cli、npm安装、搜极星、SouGEO、sougeo、GEO报告、品牌报告、行业报告、星盾报告、个人品牌报告、企业品牌、产品类型、职业类型、关注问题、测试问题、问题生成、问题点选、问题勾选、换一批、GEO问题、地域解析、模糊地址、IP归属地、报告状态、生成状态、AI可见度、品牌指数、竞品对比、AI平台曝光、报告分享、分享链接、share_code、二次分享、报告链接、套餐、sku、geo report、brand report、report status。"
-description_zh: "搜极星 GEO 品牌/行业/星盾报告 CLI（需先 `npm i -g @yooai/sougeo-cli`）：登录、引导式生成（产品/职业类型基于品牌名生成；**关注问题由 Agent 默认生成一批「用户视角 + GEO 场景」问题、经**交互式多选组件**供用户勾选（可改、可分轮），品牌 ≤3 条 / 行业 ≤6 条**；模糊地域按 IP 归属地解析或用户确认）、创建后轮询状态并取出报告链接与基础小结（品牌报告不含「行业归属」）、分页查询、分享报告并拼装 share_code 分享链接（打开需登录，分享后可在官网查看查看者与查看记录）、权益/套餐管理。"
-description_en: "SouGEO GEO brand/industry/shield report CLI (install first: npm i -g @yooai/sougeo-cli): auth, guided create (brand-derived product/role options; **Agent pre-generates user-perspective GEO test questions picked via interactive multi-select (editable, multi-round), brand ≤3 / industry ≤6**; vague locations resolved via IP geolocation or user confirmation), poll status then fetch report link + brief summary (brand reports exclude industry attribution), paged list, share (build https://sougeo.com/ReportResults?share_code=<code>; requires login to view; on-site viewer & access records after sharing), rights/SKU. Cross-platform."
-version: 3.14.0
-display_name: "搜极星 GEO 品牌报告"
+description: "搜极星 SouGEO —— 商业品牌 GEO 洞察工具，帮用户看清品牌在 AI 搜索/对话中的可见度、曝光与竞品表现。
+  适用场景：用户想为品牌或行业做 GEO 诊断报告，例如「做个品牌 GEO 报告」「看看我们在 AI 里的曝光」「生成行业报告」「查/分享/购买报告」。支持企业品牌、个人品牌、行业、星盾四类报告。
+  核心流程：先确认报告对象与参数（品牌名、企业/个人、行业、产品/职业类型、关注问题、AI 平台、报告类型），再创建报告、等待生成、返回在线报告链接与要点小结。
+  关键约束：
+  - 产品类型/职业类型须基于品牌名推断，不用通用候选池。
+  - 关注问题由 Agent 生成一批「用户视角 + GEO 场景」问题，交用户点选/修改/换批；品牌 ≤3 条、行业 ≤6 条；问题不含品牌名，需带决策引导词、卖点关键词和四类标签。
+  - 地域模糊时按 IP 归属地解析或请用户确认。
+  - 分享链接打开后仍需登录 SouGEO 账号，非免登录公开页；分享后可在官网查看查看者与查看记录。
+  其他能力：查询历史报告、分享报告、查看可购套餐并下单、订单校验。
+  触发词：搜极星、SouGEO、sougeo、GEO 报告、品牌报告、行业报告、星盾报告、个人品牌报告、企业品牌、产品类型、职业类型、关注问题、GEO 问题、AI 可见度、品牌指数、竞品对比、AI 平台曝光、报告分享、分享链接、share_code、报告链接、套餐、sku。"
+description_zh: "搜极星 SouGEO —— 商业品牌 GEO 洞察工具，帮用户看清品牌在 AI 搜索/对话中的可见度与竞品表现。适用于：为品牌或行业生成 GEO 诊断报告（企业品牌/个人品牌/行业/星盾），查询、分享、购买报告。
+  流程：确认报告参数（品牌名、企业或个人、行业、产品/职业类型、关注问题、AI 平台、报告类型）→ 创建 → 等待生成 → 返回在线链接与要点小结。
+  关键约束：产品/职业类型须基于品牌名推断，不用通用候选池；关注问题由 Agent 生成「用户视角 + GEO 场景」问题供用户点选/修改/换批，品牌 ≤3 条、行业 ≤6 条，不含品牌名，需带决策引导词、卖点关键词和四类标签；地域模糊按 IP 归属地解析或用户确认；分享链接打开仍需登录 SouGEO，非公开页，分享后可在官网查看查看者与记录。
+  触发词：搜极星、SouGEO、sougeo、GEO 报告、品牌报告、行业报告、星盾报告、个人品牌报告、产品类型、职业类型、关注问题、GEO 问题、AI 可见度、品牌指数、竞品对比、报告分享、share_code、报告链接、套餐、sku。"
+description_en: "SouGEO — GEO insight tool for brands: create/view/share/buy GEO reports (company/personal brand, industry, shield).
+  Flow: confirm params (brand, brand vs. personal, industry, product/role type, focus questions, AI platforms, report type) → create → wait → link + summary.
+  Constraints: product/role type inferred from brand name (no generic pool); focus questions are Agent-generated user-perspective GEO questions selected/edited by the user (brand ≤3, industry ≤6; no brand name; include decision-guiding words, selling-point keywords, four label types); vague locations via IP geolocation or user confirmation; shared links require SouGEO login (not public) and show viewer/access records on-site.
+  Also: report history, sharing, plan/SKU purchase, order verification.
+  Triggers: SouGEO, sougeo, GEO report, brand/industry/shield report, personal brand report, product/role type, focus questions, AI visibility, brand index, competitor comparison, share_code, report link, plan, sku."
+version: 1.0.0
+display_name: "搜极星 GEO 商业品牌分析报告"
 display_name_en: "sougeo-brand-report"
 visibility: "public"
+author:"横琴必优科技"
 allowed-tools: Read, Write, Bash, Glob, WebSearch, WebFetch
 agent_created: true
 metadata:
@@ -69,6 +86,77 @@ metadata:
 | 分享报告 | **有效期类型**（3 天 ⭐ / 7 天 / 永久）+ 是否允许查看历史 → **拼装 `https://sougeo.com/ReportResults?share_code=<share_code>` 分享链接**（⚠️ 打开后仍需登录 SouGEO 账号才能查看；分享后可在官网查看查看者与查看记录） |
 
 > 完整状态机与话术见 **§4.2 引导式参数收集流程**（Step 0~7，含**关注问题规则**与**创建后轮询取链接闭环**）、**§4.2 `report status`**、**§4.2 `report share` 引导式分享**。
+
+### 📋 典型用户示例（对话演练）
+
+> 以下是 4 段高频场景的压缩对话示例，展示「用户原话 → Agent 识别与追问 → 确认单 → 调用 → 交付」的完整节奏。省略号处表示按 §4.2 状态机继续。
+
+**示例 1｜企业品牌（最常见）**
+
+```
+用户："帮我看看小米在 AI 搜索里表现怎么样。"
+Agent：（识别：品牌报告，主体=小米）"这次分析的是 企业品牌 还是 个人品牌？"
+用户："企业。"
+Agent：（已拿到品牌名，后置生成产品候选）"小米的产品类型选哪个？
+        ① 智能手机 ⭐（核心产品线）② 智能家居 ③ 小米汽车 SU7 ④ 自行输入"
+用户："手机吧。"
+Agent：（生成关注问题多选，≤3 条，不含"小米"，带决策引导词+卖点词）
+        "勾选本次要测试的关注问题（可改可换批，最多 3 条）：
+        ☑ 除了几个大牌，还有哪些性价比高的手机值得考虑？（平替抉择）
+        ☑ 预算 3000 以内、适合学生的手机推荐哪款？（场景推荐）
+        ☐ 续航久、充电快的安卓手机怎么选？（痛点方案）"
+用户："就前两条。"
+Agent：（地域/平台/报告类型均有默认值 ⭐，不追问）展示参数确认单 → 用户确认
+Agent：report create -r brand -b 小米 -a company -p 智能手机 -q "…" -q "…" -l 1
+      → report status <id> --watch → report read <id> --type link
+交付："报告已生成 ✅ 品牌指数 82 …" + 🔗 在线报告链接，引导点开看完整报告
+```
+
+**示例 2｜个人品牌**
+
+```
+用户："测测我这个做烘焙教程的博主在 AI 里的知名度。"
+Agent：（识别：个人品牌）"你的个人品牌名 / IP 名是什么？（比如网名、账号名）"
+用户："小鹿烘焙日记。"
+Agent：（据身份生成职业候选）"职业类型选哪个？① 烘焙博主 ⭐ ② 美食博主 ③ 生活类 UP 主 ④ 自行输入"
+用户："烘焙博主。"
+Agent：（关注问题多选，≤3 条，不含"小鹿烘焙日记"）
+        "☑ 想学烘焙新手跟哪个博主入门比较快？（场景推荐）
+         ☑ 找靠谱的烘焙教程博主，选谁好？（抉择）
+         ☐ 想给烘焙工作室引流的博主合作怎么选？（痛点方案）"
+用户：勾选 + 确认 → 调用（-a personal -p 烘焙博主）→ 轮询 → 交付链接
+```
+
+**示例 3｜行业报告**
+
+```
+用户："生成一份宠物食品行业在 AI 里的报告。"
+Agent：（识别：行业报告，无需品牌类型/产品类型）
+        "关注问题最多可选 6 条，我先生成一批（含决策引导词+卖点词，不含任何品牌名）：
+        ☑ 给幼猫选粮，哪个国产牌子口碑好？（场景推荐）
+        ☑ 想换性价比高的宠物粮，怎么挑？（平替抉择）
+        ☐ 宠物挑食吃什么粮能改善？（痛点方案）…"（可分轮展示）
+用户："地域就写杭州。"
+Agent：确认单 → report create -r industry -i 宠物食品 -q "…" ×N -l 31 → 轮询 → 交付
+```
+
+**示例 4｜分享已有报告**
+
+```
+用户："把刚才那份报告分享给我们老板看。"
+Agent："分享有效期选哪种？① 3 天 ⭐ ② 7 天 ③ 永久；是否允许对方查看历史？"
+用户："3 天，允许。"
+Agent：report share start <id> --time 3days -a
+      → 取 share_code 拼装 https://sougeo.com/ReportResults?share_code=<code>
+交付："🔗 分享链接已生成（3 天有效）。注意：打开需登录 SouGEO 账号；之后可在官网查看查看者与查看记录。"
+```
+
+**反例（不要这样做）**
+
+- ❌ 用户说"分析小米"就直接 `report create -b 小米`（缺 `-q`、缺产品类型，未走确认单）。
+- ❌ 关注问题里写"小米手机怎么样"（含品牌名，GEO 测试失效）。
+- ❌ 不知道品牌名就先抛"手机/电脑/家电"通用产品池（必须先拿品牌名再生成候选）。
+- ❌ 用户说"我们这边"就原样写进问题（须按 IP 归属地解析为明确地名并让用户确认）。
 
 ---
 
